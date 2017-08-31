@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+$(":input[name=name]").blur(function(){
+	$.ajax({
+		type:"post",
+		dataType:"text",
+		data:"name=" + $(":input[name=name]").val(),
+		url:"${pageContext.request.contextPath}/user/queryname.action",
+		success:function(data){
+			if(data == "fail"){
+				$("span").text("用户名已存在");
+				$(":input[name=name]").val("");
+				$(":input[name=name]").focus();
+			}else{
+				$("span").text("");
+			}
+		}
+	});	
+
+});
+
+
+</script>
+
+
+</body>
+</html>
